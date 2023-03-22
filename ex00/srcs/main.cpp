@@ -6,18 +6,16 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:13:04 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/22 13:10:56 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/03/22 13:35:36 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-#include <string>
-#include <iostream>
-#include <fstream>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <unistd.h>
+	#include <bits/stdc++.h>
 
 // static int err(int ret, char **av) {
 
@@ -141,8 +139,8 @@ int main(int ac, char **av) {
 	BitcoinExchange		myBTC;
 
 	std::map<String, float>::iterator it;
-	for (it = myBTC._dataCSV.begin(); it != myBTC._dataCSV.end(); ++it)
-		std::cout << "Key: " << it->first << ", Value: " << it->second << std::endl;
+	for (it = myBTC.dataCSV.begin(); it != myBTC.dataCSV.end(); ++it)
+		std::cout << "Key: " << it->first << ", Value: " << std::fixed << std::setprecision(2) << it->second << std::endl;
 
 	return (EXIT_SUCCESS);
 }
