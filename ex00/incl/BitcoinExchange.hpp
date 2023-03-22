@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:12:36 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/22 13:56:53 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:26:11 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,36 @@
 
 /*------ L I B R A R I E S ------*/
 
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <bits/stdc++.h>
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <map>
 
-// /*-------- C L A S S E S --------*/
 
-typedef	std::string		String;
+/*------ T Y P E D E F S ------*/
+
 typedef	unsigned int	uint;
+
+/*-------- C L A S S E S --------*/
 
 class BitcoinExchange {
 
 	public:
 		BitcoinExchange();
-		BitcoinExchange(String myCSV);
-		// BitcoinExchange(const BitcoinExchange& cpy);
-		// BitcoinExchange& operator=(const BitcoinExchange& asgn);
+		BitcoinExchange(const BitcoinExchange& cpy);
+		BitcoinExchange& operator=(const BitcoinExchange& asgn);
 		~BitcoinExchange();
 
-		void	BitcoinExchange::ApplyXCHRate(String date, String nbBTC);
+		void	ApplyXCHRate(std::string date, std::string nbBTC);
 
-		std::map<String, float>	dataCSV;
+		std::map<std::string, float>	dataCSV;
 };
 
 /*---------- O T H E R ----------*/
