@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:12:52 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/22 15:21:36 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:27:43 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,29 @@ BitcoinExchange::BitcoinExchange() {
 
 	String			line;
 	String			key;
+
 	std::getline(file, line);
 	while (std::getline(file, line)) {	
-		std::stringstream	ss(line);
 		
+		std::stringstream	ss(line);
+	
 		std::getline(ss, key, ',');
-
 		float exchgRate;
 		ss >> exchgRate;
-
 		dataCSV[key] = exchgRate;
 	}
 	file.close();
 }
 
-// BitcoinExchange::BitcoinExchange(const BitcoinExchange &cpy) {};
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &cpy) {
 
-// BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& asgn) {
-// 	return *this;
-// }
+	
+};
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& asgn) {
+	
+	return *this;
+}
 
 BitcoinExchange::~BitcoinExchange() {
 	std::cout << RED "💥 Destructor BitcoinExchange " << std::endl;
