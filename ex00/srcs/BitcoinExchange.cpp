@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:12:52 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/22 21:27:26 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/03/23 01:20:21 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 BitcoinExchange::BitcoinExchange() {
 
-	std::cout << BLUE "Default constructor BitcoinExchange " END << std::endl;
+	std::cout << BLUE "Default constructor BitcoinExchange!\n" RESET;
 	
-	std::ifstream	file("data.csv");
+	std::ifstream		file("data.csv");
+
 	if (!file.is_open()) {
-		std::cerr << RED "btc: can't open data.csv" END << std::endl;
+		std::cerr << YELLOW "Error: " RESET "btc: can't open data.csv";
 		return;
 	}
 
@@ -38,17 +39,17 @@ BitcoinExchange::BitcoinExchange() {
 	file.close();
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &cpy) : dataCSV(cpy.dataCSV) {
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &rhs) : dataCSV(rhs.dataCSV) {
 };
 
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& asgn) {
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &rhs) {
 
-	this->dataCSV = asgn.dataCSV;
+	this->dataCSV = rhs.dataCSV;
 	return *this;
 }
 
 BitcoinExchange::~BitcoinExchange() {
-	std::cout << RED "💥 Destructor BitcoinExchange " << std::endl;
+	std::cout << RED "Destructor BitcoinExchange! " << std::endl;
 }
 
 void	BitcoinExchange::ApplyXCHRate(std::string date, std::string nbBTC) {
@@ -61,7 +62,7 @@ void	BitcoinExchange::ApplyXCHRate(std::string date, std::string nbBTC) {
 	}
 
 	float											rate = ite->second;
-	float											bitcoins = std::atof(nbBTC.c_str());
+	float											bitcoins = atof(nbBTC.c_str());
 	float											cost = bitcoins * rate;
 
 	std::cout << date << " => " << nbBTC << " = " << cost << std::endl;

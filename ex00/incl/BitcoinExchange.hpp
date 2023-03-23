@@ -6,54 +6,33 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:12:36 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/22 21:26:11 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:47:46 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-/*--------- C O L O R S ---------*/
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <bits/stdc++.h>
 
-#define GREY "\033[0;30m"
-#define RORED "\033[0;31m"
-#define RED "\033[0;91m"
-#define GREEN "\033[0;32m"
-#define YELW "\033[0;33m"
-#define BLUE "\033[0;34m"
-#define PINK "\033[0;35m"
-#define TURQ "\033[0;36m"
-#define WHITE "\033[0;97m"
-#define BWHITE "\033[1;97m"
-#define LWHITE "\033[4;97m"
-#define END "\e[0m"
+# include <iostream>
+# include <fstream>
+# include <sstream>
+# include <string>
 
-/*------ L I B R A R I E S ------*/
+# include <map>
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <bits/stdc++.h>
-
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <map>
-
-
-/*------ T Y P E D E F S ------*/
-
-typedef	unsigned int	uint;
-
-/*-------- C L A S S E S --------*/
+# include "colours.h"
 
 class BitcoinExchange {
 
 	public:
 		BitcoinExchange();
-		BitcoinExchange(const BitcoinExchange& cpy);
-		BitcoinExchange& operator=(const BitcoinExchange& asgn);
+		BitcoinExchange(const BitcoinExchange &rhs);
+		BitcoinExchange& operator=(const BitcoinExchange &rhs);
 		~BitcoinExchange();
 
 		void	ApplyXCHRate(std::string date, std::string nbBTC);

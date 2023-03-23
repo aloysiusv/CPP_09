@@ -6,73 +6,70 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:13:04 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/22 20:12:39 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/03/23 01:27:19 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+#include "errors.h"
 
-static int err(int ret, char **av) {
-
-	if (ret == 2) {
-		std::cerr << RED << "Error: " << END << "Unable to open file " << av[1] << std::endl;
-		return (ret);
-	}
-	if (ret == 3) {
-		std::cerr << RED << "Error: " << END << "file " << av[1] << " is empty or is a directory\n";
-		return (ret);
-	}
-	if (ret == 4) {
-		std::cerr << RED << "Error: " << END << "Bad input in file " << av[1] << " is incorrect\n";
-		return (ret);
-	}
-	if (ret == 5) {
-		std::cerr << RED << "Error: " << END << "Invalid date.\n";
-		return (ret);
-	}
-	if (ret == 6) {
-		std::cerr << RED << "Error: " << END << "The amount of btc isn't specified or has a bad input.\n";
-		return (ret);
-	}
-	return (EXIT_SUCCESS);
+static int err(ErrorCode code, const std::string &filename) {
+    switch (code) {
+        case (E_BAD_USE):
+            std::cerr << YELLOW "Error: " RESET "[usage]: ./btc <filename>.txt\n";
+            break;
+		case (E_BAD_INPUT):
+            std::cerr << YELLOW "Error: " RESET "Something is wrong with the input\n.";
+            break;
+        case (E_CANT_OPEN):
+            std::cerr << YELLOW "Error: " RESET "Unable to open file " << filename << std::endl;
+            break;
+        case (E_BAD_FILE):
+            std::cerr << YELLOW "Error: " RESET "File " << filename << " is empty or is a directory\n";
+            break;
+        case (E_BAD_DATE):
+            std::cerr << YELLOW "Error: " RESET "Invalid date.\n";
+            break;
+        case (E_BAD_BTC):
+            std::cerr << YELLOW "Error: " RESET "Invalid amount of bitcoins.\n";
+            break;
+        default:
+            return EXIT_SUCCESS;
+    }
+    return static_cast<int>(code);
 }
 
-static int date_err(std::string date, char **av) {
-
-	if (date.length() != 10)
-		return err(4, av);
-	if (date[4] != '-' || date[7] != '-')
-		return err(4, av);
-	for (int i = 0; i < 10; ++i) {
-		if (i == 4 || i == 7)
-			continue;
-		if (isdigit(date[i]) == false)
-			return err(4, av);
-	}
-
-	std::string		day = date.substr(8, 2);
-	std::string		month = date.substr(5, 2);
-	std::string		year = date.substr(0, 4);
-
-	if (atoi(month.c_str()) < 1 || atoi(month.c_str()) > 12)
-		return err(5, av);
+static int date_err(const std::string &date, const std::string &filename) {
 	
-	if ((atoi(month.c_str()) == 1 || atoi(month.c_str()) == 3 || atoi(month.c_str()) == 5
-		|| atoi(month.c_str()) == 7 || atoi(month.c_str()) == 8 || atoi(month.c_str()) == 10
-		|| atoi(month.c_str()) == 12) && (atoi(day.c_str()) < 1 || atoi(day.c_str()) > 31))
-		return err(5, av);
-	
-	if ((atoi(month.c_str()) == 4 || atoi(month.c_str()) == 6 || atoi(month.c_str()) == 9
-		|| atoi(month.c_str()) == 11) && (atoi(day.c_str()) < 1 || atoi(day.c_str()) > 30))
-		return err(5, av);
+	if (date.length() != 10 || date[4] != '-' || date[7] != '-')
+        return err(E_BAD_DATE, filename);
+    for (int i = 0; i < 10; ++i) {
+        if (i == 4 || i == 7)
+            continue;
+        if (!isdigit(date[i]))
+            return err(E_BAD_DATE, filename);
+    }
 
-	if (atoi(month.c_str()) == 2 && (atoi(day.c_str()) < 1 || atoi(day.c_str()) > 29))
-		return err(5, av);
+    std::string day_str		= date.substr(8, 2);
+    std::string month_str	= date.substr(5, 2);
+    std::string year_str	= date.substr(0, 4);
 
-	if (atoi(year.c_str()) < 2009 || atoi(year.c_str()) > 2022)
-		return err(5, av);
-	
-	return (EXIT_SUCCESS);
+    int day					= atoi(day_str.c_str());
+    int month				= atoi(month_str.c_str());
+    int year				= atoi(year_str.c_str());
+
+    static const int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    if (month < 1 || month > 12)
+        return err(E_BAD_DATE, filename);
+    else if (day < 1 || day > daysInMonth[month])
+        return err(E_BAD_DATE, filename);
+    else if (month == 2 && day == 29 && (!(year % 4 == 0 && year % 100 != 0) || year % 400 == 0))
+        return err(E_BAD_DATE, filename);
+	else if (year < MIN_YEAR || year > MAX_YEAR)
+        return err(E_BAD_DATE, filename);
+
+    return (EXIT_SUCCESS);
 }
 
 static size_t countOccur(char c, std::string &str)
@@ -87,60 +84,55 @@ static size_t countOccur(char c, std::string &str)
 
 static int nbBTC_err(std::string nbBTC) {
 
-	if (nbBTC.length() < 1 || nbBTC.length() > 4)
-		return err(6, NULL);
-	if (countOccur('.', nbBTC) > 1)
-		return err(6, NULL);
-	if (atof(nbBTC.c_str()) < 0 || atof(nbBTC.c_str()) > 1000)
-		return err(6, NULL);
+	if (nbBTC.length() < 1)
+		return err(E_BAD_BTC, "default");
+	else if (countOccur('.', nbBTC) > 1)
+		return err(E_BAD_BTC, "default");
+	else if (atof(nbBTC.c_str()) < 0 || atof(nbBTC.c_str()) > 1000)
+		return err(E_BAD_BTC, "default");
 	return (EXIT_SUCCESS);
 }
 
 int main(int ac, char **av) {
 
-	if (ac != 2) {
-		std::cerr << "Arguments must be : ./btc <filename>.txt\n";
-		return (EXIT_FAILURE);
-	}
+	if (ac != 2)
+		return err(E_BAD_USE, "default");
 	
-	std::ifstream		file;
+	std::ifstream		infile;
 	std::string			filename;
-	std::string			buff;
-	size_t				delim;
 
 	filename = av[1];
-	file.open(filename.c_str());
-	if (!file.is_open())
-		return err(2, av);
-	if (file.peek() == std::ifstream::traits_type::eof())
-		return err(3, av);
+	infile.open(filename.c_str());
+	if (!infile.is_open())
+		return err(E_CANT_OPEN, filename);
+	if (infile.peek() == std::ifstream::traits_type::eof())
+		return err(E_BAD_FILE, filename);
 	
 	BitcoinExchange		myBTC;
+	
 	std::string			date;
 	std::string 		nbBTC;
-	int					hasErr = 0;
+	std::string			line;
+	size_t				delim;
 
-	// DISPLAY MAP
-	// std::map<std::string, float>::iterator it;
-	// for (it = myBTC.dataCSV.begin(); it != myBTC.dataCSV.end(); ++it)
-	// 	std::cout << "Key: " << it->first << ", Value: " << std::fixed << std::setprecision(2) << it->second << std::endl;
-	
-	getline(file, buff);
-	if (buff != "date | value")
-		return err (4, av);
-	while (file.eof() == false) {
-		getline(file, buff);
-		if (buff.empty())
+	getline(infile, line);
+	if (line != "date | value")
+		return err(E_BAD_INPUT, filename);
+
+	while (infile.eof() == false) {	
+		int				hasErr = 0;
+		getline(infile, line);
+		if (line.empty())
 			continue;
-		delim = buff.find("|");
-		date = buff.substr(0, (delim - 1));
-		hasErr += date_err(date, av);
-		nbBTC = buff.substr((delim + 1), buff.length());
-		hasErr += nbBTC_err(nbBTC);
-		if (hasErr == EXIT_SUCCESS) 
+		delim = line.find("|");
+		date = line.substr(0, (delim - 1));
+		hasErr += date_err(date, filename);
+		nbBTC = line.substr((delim + 1), line.length());
+		if (hasErr == 0)
+			hasErr += nbBTC_err(nbBTC);
+		if (hasErr == 0)
 			myBTC.ApplyXCHRate(date, nbBTC);
-		hasErr = 0;
 	}
-	file.close();
+	infile.close();
 	return (EXIT_SUCCESS);
 }
