@@ -6,25 +6,25 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:12:52 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/23 01:20:21 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/03/23 01:35:17 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange() {
+BitcoinExchange::BitcoinExchange(std::string database) {
 
-	std::cout << BLUE "Default constructor BitcoinExchange!\n" RESET;
+	std::cout << BLUE "Parameterised constructor BitcoinExchange!\n" RESET;
 	
-	std::ifstream		file("data.csv");
+	std::ifstream	file(database.c_str());
 
 	if (!file.is_open()) {
 		std::cerr << YELLOW "Error: " RESET "btc: can't open data.csv";
 		return;
 	}
 
-	std::string			line;
-	std::string			key;
+	std::string		line;
+	std::string		key;
 
 	std::getline(file, line);
 	while (std::getline(file, line)) {	
@@ -49,7 +49,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &rhs) {
 }
 
 BitcoinExchange::~BitcoinExchange() {
-	std::cout << RED "Destructor BitcoinExchange! " << std::endl;
+	std::cout << RED "Destructor BitcoinExchange!\n" RESET;
 }
 
 void	BitcoinExchange::ApplyXCHRate(std::string date, std::string nbBTC) {
@@ -61,9 +61,9 @@ void	BitcoinExchange::ApplyXCHRate(std::string date, std::string nbBTC) {
 		--ite;
 	}
 
-	float											rate = ite->second;
-	float											bitcoins = atof(nbBTC.c_str());
-	float											cost = bitcoins * rate;
+	float	rate = ite->second;
+	float	bitcoins = atof(nbBTC.c_str());
+	float	cost = bitcoins * rate;
 
 	std::cout << date << " => " << nbBTC << " = " << cost << std::endl;
 }

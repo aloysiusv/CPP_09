@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:13:04 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/23 01:27:19 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/03/23 01:37:11 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static int date_err(const std::string &date, const std::string &filename) {
     int year				= atoi(year_str.c_str());
 
     static const int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	static const int MIN_YEAR = 2009;
+	static const int MAX_YEAR = 2022;
 
     if (month < 1 || month > 12)
         return err(E_BAD_DATE, filename);
@@ -108,11 +110,11 @@ int main(int ac, char **av) {
 	if (infile.peek() == std::ifstream::traits_type::eof())
 		return err(E_BAD_FILE, filename);
 	
-	BitcoinExchange		myBTC;
+	BitcoinExchange		myBTC("data.csv");
 	
+	std::string			line;
 	std::string			date;
 	std::string 		nbBTC;
-	std::string			line;
 	size_t				delim;
 
 	getline(infile, line);

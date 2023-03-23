@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:12:36 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/23 00:47:46 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/03/23 01:35:51 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 class BitcoinExchange {
 
 	public:
-		BitcoinExchange();
+		BitcoinExchange(std::string database);
 		BitcoinExchange(const BitcoinExchange &rhs);
 		BitcoinExchange& operator=(const BitcoinExchange &rhs);
 		~BitcoinExchange();
@@ -39,7 +39,3 @@ class BitcoinExchange {
 
 		std::map<std::string, float>	dataCSV;
 };
-
-/*---------- O T H E R ----------*/
-
-
