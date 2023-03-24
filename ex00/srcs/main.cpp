@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vagrant <vagrant@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:13:04 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/23 01:37:11 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:19:07 by vagrant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,64 +14,64 @@
 #include "errors.h"
 
 static int err(ErrorCode code, const std::string &filename) {
-    switch (code) {
-        case (E_BAD_USE):
-            std::cerr << YELLOW "Error: " RESET "[usage]: ./btc <filename>.txt\n";
-            break;
+	switch (code) {
+		case (E_BAD_USE):
+			std::cerr << YELLOW "Error: " RESET "[usage]: ./btc <filename>.txt\n";
+			break;
 		case (E_BAD_INPUT):
-            std::cerr << YELLOW "Error: " RESET "Something is wrong with the input\n.";
-            break;
-        case (E_CANT_OPEN):
-            std::cerr << YELLOW "Error: " RESET "Unable to open file " << filename << std::endl;
-            break;
-        case (E_BAD_FILE):
-            std::cerr << YELLOW "Error: " RESET "File " << filename << " is empty or is a directory\n";
-            break;
-        case (E_BAD_DATE):
-            std::cerr << YELLOW "Error: " RESET "Invalid date.\n";
-            break;
-        case (E_BAD_BTC):
-            std::cerr << YELLOW "Error: " RESET "Invalid amount of bitcoins.\n";
-            break;
-        default:
-            return EXIT_SUCCESS;
-    }
-    return static_cast<int>(code);
+			std::cerr << YELLOW "Error: " RESET "Something is wrong with the input\n.";
+			break;
+		case (E_CANT_OPEN):
+			std::cerr << YELLOW "Error: " RESET "Unable to open file " << filename << std::endl;
+			break;
+		case (E_BAD_FILE):
+			std::cerr << YELLOW "Error: " RESET "File " << filename << " is empty or is a directory\n";
+			break;
+		case (E_BAD_DATE):
+			std::cerr << YELLOW "Error: " RESET "Invalid date.\n";
+			break;
+		case (E_BAD_BTC):
+			std::cerr << YELLOW "Error: " RESET "Invalid amount of bitcoins.\n";
+			break;
+		default:
+			return EXIT_SUCCESS;
+	}
+	return static_cast<int>(code);
 }
 
 static int date_err(const std::string &date, const std::string &filename) {
 	
 	if (date.length() != 10 || date[4] != '-' || date[7] != '-')
-        return err(E_BAD_DATE, filename);
-    for (int i = 0; i < 10; ++i) {
-        if (i == 4 || i == 7)
-            continue;
-        if (!isdigit(date[i]))
-            return err(E_BAD_DATE, filename);
-    }
+		return err(E_BAD_DATE, filename);
+	for (int i = 0; i < 10; ++i) {
+		if (i == 4 || i == 7)
+			continue;
+		if (!isdigit(date[i]))
+			return err(E_BAD_DATE, filename);
+	}
 
-    std::string day_str		= date.substr(8, 2);
-    std::string month_str	= date.substr(5, 2);
-    std::string year_str	= date.substr(0, 4);
+	std::string day_str		= date.substr(8, 2);
+	std::string month_str	= date.substr(5, 2);
+	std::string year_str	= date.substr(0, 4);
 
-    int day					= atoi(day_str.c_str());
-    int month				= atoi(month_str.c_str());
-    int year				= atoi(year_str.c_str());
+	int day					= atoi(day_str.c_str());
+	int month				= atoi(month_str.c_str());
+	int year				= atoi(year_str.c_str());
 
-    static const int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	static const int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	static const int MIN_YEAR = 2009;
 	static const int MAX_YEAR = 2022;
 
-    if (month < 1 || month > 12)
-        return err(E_BAD_DATE, filename);
-    else if (day < 1 || day > daysInMonth[month])
-        return err(E_BAD_DATE, filename);
-    else if (month == 2 && day == 29 && (!(year % 4 == 0 && year % 100 != 0) || year % 400 == 0))
-        return err(E_BAD_DATE, filename);
+	if (month < 1 || month > 12)
+		return err(E_BAD_DATE, filename);
+	else if (day < 1 || day > daysInMonth[month])
+		return err(E_BAD_DATE, filename);
+	else if (month == 2 && day == 29 && (!(year % 4 == 0 && year % 100 != 0) || year % 400 == 0))
+		return err(E_BAD_DATE, filename);
 	else if (year < MIN_YEAR || year > MAX_YEAR)
-        return err(E_BAD_DATE, filename);
+		return err(E_BAD_DATE, filename);
 
-    return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
 
 static size_t countOccur(char c, std::string &str)
