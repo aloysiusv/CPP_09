@@ -3,20 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vagrant <vagrant@student.42.fr>            +#+  +:+       +#+         #
+#    By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/24 12:46:45 by vagrant           #+#    #+#              #
-#    Updated: 2023/03/24 13:01:50 by vagrant          ###   ########.fr        #
+#    Updated: 2023/03/28 19:10:48 by lrandria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	PmergeMe
 
-CC		=	c+
+CC		=	c++
 
 FLAGS	=	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98
 
 SRC		+=  PmergeMe.cpp
+SRC		+=  parsing.cpp
 SRC		+=	main.cpp
 
 OBJ		:=	$(addprefix ./obj/,$(SRC:%.cpp=%.o))
