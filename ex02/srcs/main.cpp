@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:46:37 by vagrant           #+#    #+#             */
-/*   Updated: 2023/04/01 21:09:20 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:50:05 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int main(int ac, char **av) {
 		if (hasTwin(dummy) == true)
 			return err(E_TWIN);
 	}
+	if (dummy.size() % 2 != 0)
+		g_isOdd = true;
 
 	/* LET'S GO */
 	

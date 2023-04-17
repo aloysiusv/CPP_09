@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: estoffel <estoffel@student.42.fr>          +#+  +:+       +#+         #
+#    By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/13 19:26:15 by estoffel          #+#    #+#              #
-#    Updated: 2023/03/24 03:05:17 by estoffel         ###   ########.fr        #
+#    Created: 2023/03/23 01:40:42 by lrandria          #+#    #+#              #
+#    Updated: 2023/03/23 01:40:59 by lrandria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	RPN
 
 CC		=	c++
 
-FLAGS	=	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98 #-Wno-unused -Wno-unused-variable -Wno-unused-parameter 
+FLAGS	=	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98
 
 SRC		+=	RPN.cpp
 SRC		+=	main.cpp
@@ -29,34 +29,19 @@ all: $(NAME)
 
 -include $(DEP)
 
-./obj/%.o: ./src/%.cpp
+./obj/%.o: ./srcs/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(FLAGS) -o $@ -c $<
 
 $(NAME): $(OBJ)
 	$(CC) -o $(NAME) $(OBJ)
-	@printf "\n"
-	@printf "\n"
-	@printf "   🌼\033[1;97m R P N  C R E A T E D  W I T H  S U C C E S S 🌼\e[0m\n"
-	@printf "\n"
-	@printf "			    x\n"
-	@printf "\n"
-	@printf "		✨	~ \033[1;97mEnora\e[0m ~	✨\n"
-	@printf "\n"
-	@printf "\n"
 
 clean:
 	rm -rf obj/
-	@printf "\n"
-	@printf "💧\033[1;97m E V E R Y T H I N G  I S  C L E A N E D 💧\e[0m\n"
-	@printf "\n"
 
 fclean:
 	rm -rf obj/
 	$(RM) $(NAME)
-	@printf "\n"
-	@printf "💧\033[1;97m E V E R Y T H I N G  I S  C L E A N E D 💧\e[0m\n"
-	@printf "\n"
 
 re: fclean all
 
