@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:46:37 by vagrant           #+#    #+#             */
-/*   Updated: 2023/04/24 16:58:20 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:19:39 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int main(int ac, char **av) {
 	}
 
 	/* LET'S GO */
-	PmergeMe			p;
+	PmergeMe			p(av[1]);
+	
 	std::vector<int>	vec;
 	std::list<int>		lst;
 	int					newElem;

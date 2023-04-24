@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:46:40 by vagrant           #+#    #+#             */
-/*   Updated: 2023/04/24 17:06:22 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:37:18 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 								COPLIEN FORM 
    ========================================================================== */
 
-PmergeMe::PmergeMe() {
+PmergeMe::PmergeMe(const char *nums) {
 	std::cout << BLUE "PmergeMe default constructor called!\n" RESET;
+
+	
 }
 
 PmergeMe::PmergeMe(PmergeMe const &src) {
@@ -32,7 +34,6 @@ PmergeMe			&PmergeMe::operator=(PmergeMe const &rhs) {
 	std::cout << BLUE "PmergeMe assignment operator called!\n" RESET;
 	if (this != &rhs)
 		return (*this);
-	
 	return (*this);
 }
 
@@ -43,6 +44,8 @@ PmergeMe::~PmergeMe() {
 /* ==========================================================================
 								MEMBER FUNCTIONS 
    ========================================================================== */
+
+void	doSorting()
 
 static void	sortRecursivelyVec(std::vector<int> &bigGuys, size_t size) {
 

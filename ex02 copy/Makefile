@@ -5,18 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/23 01:40:42 by lrandria          #+#    #+#              #
-#    Updated: 2023/03/23 01:40:59 by lrandria         ###   ########.fr        #
+#    Created: 2023/03/24 12:46:45 by vagrant           #+#    #+#              #
+#    Updated: 2023/03/28 19:10:48 by lrandria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	RPN
+NAME	=	PmergeMe
 
 CC		=	c++
 
 FLAGS	=	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98
 
-SRC		+=	RPN.cpp
+SRC		+=  PmergeMe.cpp
+SRC		+=  parsing.cpp
 SRC		+=	main.cpp
 
 OBJ		:=	$(addprefix ./obj/,$(SRC:%.cpp=%.o))

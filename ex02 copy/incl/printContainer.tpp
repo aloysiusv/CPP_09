@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RPN.hpp                                            :+:      :+:    :+:   */
+/*   printContainer.tpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 01:54:20 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/23 01:55:01 by lrandria         ###   ########.fr       */
+/*   Created: 2023/03/29 21:46:49 by lrandria          #+#    #+#             */
+/*   Updated: 2023/03/29 22:26:41 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <bits/stdc++.h>
+# include "PmergeMe.hpp"
 
-# include <iostream>
-# include <fstream>
-# include <sstream>
-# include <string>
+template<typename T>
+void	printContainer(const T container, std::string name) {
 
-# include <stack>
-
-# include "colours.h"
-
-class RPN {
-
-	public:
-		RPN();
-		RPN(const RPN &rhs);
-		RPN& operator=(const RPN &rhs);
-		~RPN();
-};
+	typename T::const_iterator it;
+	
+	std::cout << name << std::endl;
+	std::cout << "[ ";
+	for (it = container.begin(); it != container.end(); ++it) {
+		std::cout << *it << " ";
+	}
+	std::cout << "]\n";
+}
