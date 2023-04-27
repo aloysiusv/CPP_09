@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:46:40 by vagrant           #+#    #+#             */
-/*   Updated: 2023/04/24 17:06:22 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:43:29 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ std::vector<int> PmergeMe::mergeInsertVec(std::vector<int> &input) {
 			input.insert(std::lower_bound(input.begin(), input.end(), myPairs[i].first), myPairs[i].first);
 	
 	std::clock_t end = std::clock();
-	double time = static_cast<double>(end - start) * 100000 / CLOCKS_PER_SEC; // calculate time in seconds
+	double	time = static_cast<double>(end - start) * 1000000 / CLOCKS_PER_SEC; // calculate time in seconds
 	std::cout << "\nTime to process a range of " << input.size() << " elements with std::vector: " 
-			  << time << "us.\n";
+			  << "0." << time << "us.\n";
 	return input;
 }
 
@@ -153,9 +153,9 @@ std::list<int> PmergeMe::mergeInsertLst(std::list<int> &input) {
 	}
 	
 	std::clock_t end = std::clock();
-	double time = static_cast<double>(end - start) * 100000 / CLOCKS_PER_SEC; // calculate time in seconds
+	double	time = static_cast<double>(end - start) * 1000000 / CLOCKS_PER_SEC; // calculate time in seconds
 	std::cout << "\nTime to process a range of " << input.size() << " elements with std::list: " 
-			  << time << "us.\n";
+			  << "0." << time << "us.\n";
 	
 	return input;
 }
