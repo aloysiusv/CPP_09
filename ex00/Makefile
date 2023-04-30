@@ -6,7 +6,7 @@
 #    By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 12:13:24 by lrandria          #+#    #+#              #
-#    Updated: 2023/04/30 18:28:23 by lrandria         ###   ########.fr        #
+#    Updated: 2023/04/30 18:36:52 by lrandria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ CXX		=	c++
 CXXFLAGS =	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98
 
 SRCS		=	BitcoinExchange.cpp \
-			main.cpp \
-			errors.cpp
+				main.cpp \
+				errors.cpp
 
-OBJS		:=	$(addprefix ./obj/,$(SRCS:%.cpp=%.o))
+OBJS		:=	$(addprefix ./objs/,$(SRCS:%.cpp=%.o))
 
 DEP		=	$(OBJS:%.o=%.d)
 
@@ -30,7 +30,7 @@ all: $(NAME)
 
 -include $(DEP)
 
-./obj/%.o: ./srcs/%.cpp
+./objs/%.o: ./srcs/%.cpp
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
@@ -38,10 +38,10 @@ $(NAME): $(OBJS)
 	$(CXX) -o $(NAME) $(OBJS)
 
 clean:
-	rm -rf obj/
+	rm -rf objs/
 
 fclean:
-	rm -rf obj/
+	rm -rf objs/
 	$(RM) $(NAME)
 
 re: fclean all

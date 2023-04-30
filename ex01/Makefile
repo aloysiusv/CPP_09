@@ -6,23 +6,23 @@
 #    By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/27 19:03:08 by lrandria          #+#    #+#              #
-#    Updated: 2023/04/27 19:03:11 by lrandria         ###   ########.fr        #
+#    Updated: 2023/04/30 18:35:11 by lrandria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	RPN
 
-CC		=	c++
+CXX		=	c++
 
-FLAGS	=	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98
+CXXFLAGS =	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98
 
-SRC		+=	RPN.cpp
-SRC		+=	errors.cpp
-SRC		+=	main.cpp
+SRCS	=	RPN.cpp \
+			errors.cpp \
+			main.cpp
 
-OBJ		:=	$(addprefix ./obj/,$(SRC:%.cpp=%.o))
+OBJS		:=	$(addprefix ./objs/,$(SRCS:%.cpp=%.o))
 
-DEP		=	$(OBJ:%.o=%.d)
+DEP		=	$(OBJS:%.o=%.d)
 
 RM		=	rm -f
 
@@ -30,18 +30,18 @@ all: $(NAME)
 
 -include $(DEP)
 
-./obj/%.o: ./srcs/%.cpp
+./objs/%.o: ./srcs/%.cpp
 	@mkdir -p $(@D)
-	$(CC) $(FLAGS) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
-$(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ)
+$(NAME): $(OBJS)
+	$(CXX) -o $(NAME) $(OBJS)
 
 clean:
-	rm -rf obj/
+	rm -rf objs/
 
 fclean:
-	rm -rf obj/
+	rm -rf objs/
 	$(RM) $(NAME)
 
 re: fclean all

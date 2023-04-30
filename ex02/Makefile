@@ -6,23 +6,23 @@
 #    By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/24 12:46:45 by vagrant           #+#    #+#              #
-#    Updated: 2023/03/28 19:10:48 by lrandria         ###   ########.fr        #
+#    Updated: 2023/04/30 18:40:52 by lrandria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	PmergeMe
 
-CC		=	c++
+CXX		=	c++
 
-FLAGS	=	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98
+CXXFLAGS =	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98
 
-SRC		+=  PmergeMe.cpp
-SRC		+=  parsing.cpp
-SRC		+=	main.cpp
+SRCS	= 	PmergeMe.cpp \
+			parsing.cpp \
+			main.cpp
 
-OBJ		:=	$(addprefix ./obj/,$(SRC:%.cpp=%.o))
+OBJS		:=	$(addprefix ./objs/,$(SRCS:%.cpp=%.o))
 
-DEP		=	$(OBJ:%.o=%.d)
+DEP		=	$(OBJS:%.o=%.d)
 
 RM		=	rm -f
 
@@ -30,18 +30,18 @@ all: $(NAME)
 
 -include $(DEP)
 
-./obj/%.o: ./srcs/%.cpp
+./objs/%.o: ./srcs/%.cpp
 	@mkdir -p $(@D)
-	$(CC) $(FLAGS) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
-$(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ)
+$(NAME): $(OBJS)
+	$(CXX) -o $(NAME) $(OBJS)
 
 clean:
-	rm -rf obj/
+	rm -rf objs/
 
 fclean:
-	rm -rf obj/
+	rm -rf objs/
 	$(RM) $(NAME)
 
 re: fclean all
