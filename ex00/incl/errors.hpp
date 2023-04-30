@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   errors.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 00:56:03 by lrandria          #+#    #+#             */
-/*   Updated: 2023/04/27 22:09:08 by lrandria         ###   ########.fr       */
+/*   Created: 2023/04/30 17:59:53 by lrandria          #+#    #+#             */
+/*   Updated: 2023/04/30 18:03:17 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ enum ErrorCode {
     E_CANT_OPEN,
     E_BAD_FILE,
     E_BAD_DATE,
-	E_BAD_SEP,
+	E_BAD_DELIM,
     E_BAD_BTC,
 };
+
+int		err(ErrorCode code, const std::string &filename);
+int		date_err(const std::string& line);
+int		delim_err(const std::string& line);
+int		nbBTC_err(const std::string& nbBTC);

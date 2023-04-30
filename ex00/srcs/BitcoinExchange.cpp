@@ -6,11 +6,13 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:12:52 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/23 01:35:17 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/04/30 16:33:53 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+BitcoinExchange::BitcoinExchange() {};
 
 BitcoinExchange::BitcoinExchange(std::string database) {
 
@@ -34,17 +36,16 @@ BitcoinExchange::BitcoinExchange(std::string database) {
 		std::getline(ss, key, ',');
 		float exchgRate;
 		ss >> exchgRate;
-		dataCSV[key] = exchgRate;
+		_dataCSV[key] = exchgRate;
 	}
 	file.close();
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &rhs) : dataCSV(rhs.dataCSV) {
-};
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &rhs) : _dataCSV(rhs._dataCSV) {};
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &rhs) {
 
-	this->dataCSV = rhs.dataCSV;
+	this->_dataCSV = rhs._dataCSV;
 	return *this;
 }
 
@@ -54,10 +55,10 @@ BitcoinExchange::~BitcoinExchange() {
 
 void	BitcoinExchange::ApplyXCHRate(std::string date, std::string nbBTC) {
 
-	std::map<std::string, float>::const_iterator	ite = dataCSV.find(date);
+	std::map<std::string, float>::const_iterator	ite = _dataCSV.find(date);
 
-	if (ite == dataCSV.end()) {
-		ite = dataCSV.lower_bound(date);
+	if (ite == _dataCSV.end()) {
+		ite = _dataCSV.lower_bound(date);
 		--ite;
 	}
 

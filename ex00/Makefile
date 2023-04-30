@@ -6,22 +6,23 @@
 #    By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 12:13:24 by lrandria          #+#    #+#              #
-#    Updated: 2023/03/22 13:10:30 by lrandria         ###   ########.fr        #
+#    Updated: 2023/04/30 18:28:23 by lrandria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	btc
 
-CC		=	c++
+CXX		=	c++
 
-FLAGS	=	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98
+CXXFLAGS =	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98
 
-SRC		+=	BitcoinExchange.cpp
-SRC		+=	main.cpp
+SRCS		=	BitcoinExchange.cpp \
+			main.cpp \
+			errors.cpp
 
-OBJ		:=	$(addprefix ./obj/,$(SRC:%.cpp=%.o))
+OBJS		:=	$(addprefix ./obj/,$(SRCS:%.cpp=%.o))
 
-DEP		=	$(OBJ:%.o=%.d)
+DEP		=	$(OBJS:%.o=%.d)
 
 RM		=	rm -f
 
@@ -31,10 +32,10 @@ all: $(NAME)
 
 ./obj/%.o: ./srcs/%.cpp
 	@mkdir -p $(@D)
-	$(CC) $(FLAGS) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
-$(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ)
+$(NAME): $(OBJS)
+	$(CXX) -o $(NAME) $(OBJS)
 
 clean:
 	rm -rf obj/
