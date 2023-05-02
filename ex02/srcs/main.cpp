@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:46:37 by vagrant           #+#    #+#             */
-/*   Updated: 2023/04/30 18:50:56 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:08:52 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int err(ErrorCode code) {
 int main(int ac, char **av) {
 
 	/* PARSING */
-	std::vector<int> dummy;
+	std::vector<int>	dummy;
 
 	if (ac < 2)
 		return err(E_BAD_USE);

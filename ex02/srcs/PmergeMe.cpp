@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:46:40 by vagrant           #+#    #+#             */
-/*   Updated: 2023/04/26 16:43:29 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:07:46 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ std::vector<int> PmergeMe::mergeInsertVec(std::vector<int> &input) {
 	std::clock_t end = std::clock();
 	double	time = static_cast<double>(end - start) * 1000000 / CLOCKS_PER_SEC; // calculate time in seconds
 	std::cout << "\nTime to process a range of " << input.size() << " elements with std::vector: " 
-			  << "0." << time << "us.\n";
+			  << time << "us.\n";
 	return input;
 }
 
@@ -155,7 +155,7 @@ std::list<int> PmergeMe::mergeInsertLst(std::list<int> &input) {
 	std::clock_t end = std::clock();
 	double	time = static_cast<double>(end - start) * 1000000 / CLOCKS_PER_SEC; // calculate time in seconds
 	std::cout << "\nTime to process a range of " << input.size() << " elements with std::list: " 
-			  << "0." << time << "us.\n";
+			  << time << "us.\n";
 	
 	return input;
 }

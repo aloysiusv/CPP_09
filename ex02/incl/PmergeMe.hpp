@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:46:31 by vagrant           #+#    #+#             */
-/*   Updated: 2023/04/26 17:09:30 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:02:42 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class PmergeMe {
 
 	public:
 		PmergeMe();
+		PmergeMe(const std::vector<int>);
 		PmergeMe(const PmergeMe &src);
 		PmergeMe	&operator=(const PmergeMe &rhs);
 		~PmergeMe();

@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:33:01 by lrandria          #+#    #+#             */
-/*   Updated: 2023/04/01 20:57:20 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:10:06 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	isSorted(std::vector<int> dummy) {
 		return true;
 	for (int i = 0; i < size; i++) {
 		if (i != 0)
-			if (dummy[i] < dummy[i - 1])
+			if (dummy[i] <= dummy[i - 1])
 				return false;
 	}
 	return true;
