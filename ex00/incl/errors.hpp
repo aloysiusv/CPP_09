@@ -6,9 +6,13 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 17:59:53 by lrandria          #+#    #+#             */
-/*   Updated: 2023/04/30 18:03:17 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:39:16 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
+
+#include <string>
 
 enum ErrorCode {
     E_BAD_USE = 1,
