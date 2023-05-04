@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:46:40 by vagrant           #+#    #+#             */
-/*   Updated: 2023/05/04 23:05:23 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/04 23:28:06 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ std::vector<int> PmergeMe::mergeInsertVec(std::vector<int> &input) {
 	
 	std::clock_t end = std::clock();
 	double	time = static_cast<double>(end - start) * 1000000.0 / CLOCKS_PER_SEC; // calculate time in seconds
-	std::cout << "\nTime to process a range of " << input.size() << " elements with std::vector: " 
-			  << time << "us.\n";
+	std::cout << GREEN "\nTime to process a range of " << input.size() << " elements with std::vector: " 
+			  << time << "us.\n" RESET;
 	return input;
 }
 
@@ -161,8 +161,8 @@ std::list<int> PmergeMe::mergeInsertLst(std::list<int> &input) {
 	
 	std::clock_t end = std::clock();
 	double	time = static_cast<double>(end - start) * 1000000.0 / CLOCKS_PER_SEC; // calculate time in seconds
-	std::cout << "\nTime to process a range of " << input.size() << " elements with std::list: " 
-			  << time << "us.\n";
+	std::cout << GREEN "\nTime to process a range of " << input.size() << " elements with std::list: " 
+			  << time << "us.\n" RESET;
 	
 	return input;
 }

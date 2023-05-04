@@ -6,15 +6,11 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 03:50:25 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/22 23:51:41 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/04 23:23:31 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOURS_H
-# define COLOURS_H
-
-                            //original file from paulahemsi
-                            
+#pragma once
                                     /*** TEXT  ***/
 
 /* normal */
@@ -47,20 +43,20 @@
 # define BOLD_GREEN		"\e[1;32m"
 # define BOLD_BLUE		"\e[1;34m"
 # define BOLD_CYAN		"\e[1;36m"
-# define BOLD_MAGENTA           "\e[1;35m"
-# define BOLD_YELLOW            "\e[1;33m"
+# define BOLD_MAGENTA   "\e[1;35m"
+# define BOLD_YELLOW    "\e[1;33m"
 # define BOLD_BLACK		"\e[1;30m"
 # define BOLD_WHITE		"\e[1;37m"
 
 /* underline*/
 # define UNDER_RED		"\e[4;31m"
-# define UNDER_GREEN	        "\e[4;32m"
+# define UNDER_GREEN	"\e[4;32m"
 # define UNDER_BLUE		"\e[4;34m"
 # define UNDER_CYAN		"\e[4;36m"
-# define UNDER_MAGENTA	        "\e[4;35m"
-# define UNDER_YELLOW	        "\e[4;33m"
-# define UNDER_BLACK	        "\e[4;30m"
-# define UNDER_WHITE	        "\e[4;37m"
+# define UNDER_MAGENTA	"\e[4;35m"
+# define UNDER_YELLOW	"\e[4;33m"
+# define UNDER_BLACK	"\e[4;30m"
+# define UNDER_WHITE	"\e[4;37m"
 
 /* high intensity */
 # define H_RED			"\e[0;91m"
@@ -73,14 +69,14 @@
 # define H_WHITE		"\e[0;97m"
 
 /* bold high intensity */
-# define BOLD_H_BLACK	        "\e[1;90m"
+# define BOLD_H_BLACK	"\e[1;90m"
 # define BOLD_H_RED		"\e[1;91m"
-# define BOLD_H_GREEN	        "\e[1;92m"
-# define BOLD_H_YELLOW	        "\e[1;93m"
-# define BOLD_H_BLUE	        "\e[1;94m"
-# define BOLD_H_MAGENTA	        "\e[1;95m"
-# define BOLD_H_CYAN	        "\e[1;96m"
-# define BOLD_H_WHITE	        "\e[1;97m"
+# define BOLD_H_GREEN	"\e[1;92m"
+# define BOLD_H_YELLOW	"\e[1;93m"
+# define BOLD_H_BLUE	"\e[1;94m"
+# define BOLD_H_MAGENTA	"\e[1;95m"
+# define BOLD_H_CYAN	"\e[1;96m"
+# define BOLD_H_WHITE	"\e[1;97m"
 
                                     /*** BACKGROUND ***/
 
@@ -89,22 +85,20 @@
 # define GREEN_BACK		"\e[42m"
 # define BLUE_BACK		"\e[44m"
 # define CYAN_BACK		"\e[46m"
-# define MAGENTA_BACK	        "\e[45m"
-# define YELLOW_BACK	        "\e[43m"
+# define MAGENTA_BACK	"\e[45m"
+# define YELLOW_BACK	"\e[43m"
 # define BLACK_BACK		"\e[40m"
 # define WHITE_BACK		"\e[47m"
 
 /* high intensity*/
 # define H_RED_BACK		"\e[0;101m"
-# define H_GREEN_BACK	        "\e[0;102m"
-# define H_BLUE_BACK	        "\e[0;104m"
-# define H_CYAN_BACK	        "\e[0;106m"
-# define H_MAGENTA_BACK	        "\e[0;105m"
-# define H_YELLOW_BACK	        "\e[0;103m"
-# define H_BLACK_BACK	        "\e[0;100m"
-# define H_WHITE_BACK	        "\e[0;107m"
+# define H_GREEN_BACK	"\e[0;102m"
+# define H_BLUE_BACK	"\e[0;104m"
+# define H_CYAN_BACK	"\e[0;106m"
+# define H_MAGENTA_BACK	"\e[0;105m"
+# define H_YELLOW_BACK	"\e[0;103m"
+# define H_BLACK_BACK	"\e[0;100m"
+# define H_WHITE_BACK	"\e[0;107m"
 
 /* reset */
 # define RESET			"\e[0m"
-
-#endif
