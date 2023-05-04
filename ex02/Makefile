@@ -6,7 +6,7 @@
 #    By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/24 12:46:45 by vagrant           #+#    #+#              #
-#    Updated: 2023/04/30 18:40:52 by lrandria         ###   ########.fr        #
+#    Updated: 2023/05/04 17:07:28 by lrandria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CXXFLAGS =	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98
 
 SRCS	= 	PmergeMe.cpp \
 			parsing.cpp \
+			errors.cpp \
 			main.cpp
 
 OBJS		:=	$(addprefix ./objs/,$(SRCS:%.cpp=%.o))

@@ -6,32 +6,11 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:46:37 by vagrant           #+#    #+#             */
-/*   Updated: 2023/05/02 18:17:08 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:14:07 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-#include "parsing.hpp"
-
-static int err(ErrorCode code) {
-	switch (code) {
-		case (E_BAD_USE):
-			std::cerr << YELLOW "Error: " RESET "[usage]: ./PmergeMe <number(s)>\n";
-			break;
-		case (E_BAD_INT):
-			std::cerr << YELLOW "Error: " RESET "only positive integers allowed.\n";
-			break;
-		case (E_TWIN):
-			std::cerr << YELLOW "Error: " RESET "values must be unique\n";
-			break;
-		case (E_SORTED):
-			std::cerr << YELLOW "Warning: " RESET "your sequence is already sorted.\n";
-			break;
-		default:
-			return EXIT_SUCCESS;
-	}
-	return static_cast<int>(code);
-}
 
 int main(int ac, char **av) {
 
@@ -40,8 +19,8 @@ int main(int ac, char **av) {
 
 	if (ac < 2)
 		return err(E_BAD_USE);
-	if (notValid(av) == true)
-		return err(E_BAD_INT);
+	if (notValid(av))
+		return EXIT_FAILURE;
 	else {
 		for (int i = 1; i < ac; i++)
 			dummy.push_back(atoi(av[i]));
@@ -73,4 +52,3 @@ int main(int ac, char **av) {
 	printContainer(vec, "Vector");
 	printContainer(lst, "List");
 }
-

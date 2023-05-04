@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:46:31 by vagrant           #+#    #+#             */
-/*   Updated: 2023/05/02 18:02:42 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:14:49 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@
 # include <utility>
 # include <iterator>
 # include <ctime>
+# include <climits>
 
 # include <vector>
 # include <list>
 
-# include "errors.h"
+# include "errors.hpp"
+# include "parsing.hpp"
 # include "colours.h"
 
 template<typename T>

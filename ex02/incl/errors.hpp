@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   errors.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 00:56:03 by lrandria          #+#    #+#             */
-/*   Updated: 2023/03/27 19:31:59 by lrandria         ###   ########.fr       */
+/*   Created: 2023/05/04 17:07:54 by lrandria          #+#    #+#             */
+/*   Updated: 2023/05/04 17:32:40 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 enum ErrorCode {
 	E_BAD_USE = 1,
+	E_EMPTY,
+	E_NOT_DIGIT,
+	E_NO_NEG,
 	E_BAD_INT,
 	E_TWIN,
 	E_SORTED
 };
+
+int err(ErrorCode code);

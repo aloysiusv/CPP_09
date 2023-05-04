@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:46:40 by vagrant           #+#    #+#             */
-/*   Updated: 2023/05/02 18:07:46 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:47:07 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,19 @@ std::vector<int> PmergeMe::mergeInsertVec(std::vector<int> &input) {
 	
 	std::vector<std::pair<int, int> >	myPairs;
 	std::vector<int>					bigGuys;
+	std::vector<int>::iterator 			it = input.begin();
 
 	std::clock_t start = std::clock();
 
-	for (size_t i = 0; i < input.size(); i += 2)
-		myPairs.push_back(std::make_pair(input[i], input[i + 1]));
+	while (it != input.end()) {
+		
+		int	first = *it++;
+		int	second = 0;
+		
+		if (it != input.end())
+			second = *it++;
+		myPairs.push_back(std::make_pair(first, second));
+	}
 	for (size_t i = 0; i < myPairs.size(); i++) {
 		if (myPairs[i].second) { // must check second
 			if (myPairs[i].first > myPairs[i].second)

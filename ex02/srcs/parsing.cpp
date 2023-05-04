@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:33:01 by lrandria          #+#    #+#             */
-/*   Updated: 2023/05/02 18:10:06 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:32:57 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ bool	notValid(char **av) {
 	while (av[i]) {
 		arg = av[i];
 		if (arg == "")
-			return true;
+			return err(E_EMPTY);
 		if (arg.find_first_not_of("0123456789") != arg.npos)
-			return true;
+			return err(E_NOT_DIGIT);
+		if (atol(arg.c_str()) < INT_MIN || (atol(arg.c_str()) > INT_MAX))
+			return err(E_BAD_INT);
 		i++;
 	}
 	return false;
