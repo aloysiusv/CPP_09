@@ -6,22 +6,23 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:14:48 by lrandria          #+#    #+#             */
-/*   Updated: 2023/05/04 19:13:12 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/04 22:58:20 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
+#include "colours.h"
+#include <stdlib.h> // atoi and EXIT macros
 
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <stack>
-#include <stdlib.h>
 
-#include <climits>
+#include <climits> // INT macros
 
-#include "colours.h"
 
 enum ErrorCode {
     E_BAD_USE = 1,

@@ -6,17 +6,14 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:12:36 by lrandria          #+#    #+#             */
-/*   Updated: 2023/05/04 18:59:36 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/04 22:50:21 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <bits/stdc++.h>
+# include "colours.h"
+# include <bits/stdc++.h> // atof
 
 # include <iostream>
 # include <fstream>
@@ -25,7 +22,6 @@
 
 # include <map>
 
-# include "colours.h"
 
 class BitcoinExchange {
 
