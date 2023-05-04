@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:14:48 by lrandria          #+#    #+#             */
-/*   Updated: 2023/04/27 19:00:07 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:13:12 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,20 @@
 #include <stack>
 #include <stdlib.h>
 
+#include <climits>
+
 #include "colours.h"
-#include "errors.h"
+
+enum ErrorCode {
+    E_BAD_USE = 1,
+	E_EMPTY,
+    E_BAD_START,
+    E_INVALID_CHAR,
+    E_NO_SPACE,
+	E_INSUFFICIENT_OP,
+	E_DIV_BY_ZERO,
+	E_TOO_MANY
+};
 
 class RPN {
 
@@ -35,3 +47,6 @@ class RPN {
 	private:
 		std::stack<int>	stack;
 };
+
+int		err(ErrorCode code);
+bool	isop(int c);

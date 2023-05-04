@@ -6,7 +6,7 @@
 #    By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/27 19:03:08 by lrandria          #+#    #+#              #
-#    Updated: 2023/04/30 18:35:11 by lrandria         ###   ########.fr        #
+#    Updated: 2023/05/04 19:10:09 by lrandria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ CXX		=	c++
 CXXFLAGS =	-Wall -Wextra -Werror -Iincl -g3 -MMD -MP -std=c++98
 
 SRCS	=	RPN.cpp \
-			errors.cpp \
 			main.cpp
 
 OBJS		:=	$(addprefix ./objs/,$(SRCS:%.cpp=%.o))

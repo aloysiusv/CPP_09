@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:12:36 by lrandria          #+#    #+#             */
-/*   Updated: 2023/04/30 17:58:16 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:59:36 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include <map>
 
 # include "colours.h"
-# include "errors.hpp"
 
 class BitcoinExchange {
 
