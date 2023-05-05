@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:12:36 by lrandria          #+#    #+#             */
-/*   Updated: 2023/05/04 23:20:47 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:48:57 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # include "colours.h"
 # include <bits/stdc++.h> // atof
+# include <sys/stat.h> // struc stat to check if input is directory / symlink
 
 # include <iostream>
 # include <fstream>
@@ -21,7 +22,6 @@
 # include <string>
 
 # include <map>
-
 
 class BitcoinExchange {
 

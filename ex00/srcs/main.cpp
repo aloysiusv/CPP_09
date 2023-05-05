@@ -6,7 +6,7 @@
 /*   By: lrandria <lrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:13:04 by lrandria          #+#    #+#             */
-/*   Updated: 2023/05/04 22:49:36 by lrandria         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:48:32 by lrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ enum ErrorCode {
     E_BAD_USE = 1,
     E_BAD_INPUT,
     E_CANT_OPEN,
-    E_BAD_FILE,
+	E_EMPTY,
+	E_ISPROG,
+    E_ISDIR,
+	E_ISLINK,
+	E_ISWEIRD,
     E_BAD_DATE,
 	E_BAD_DELIM,
     E_BAD_BTC,
@@ -32,12 +36,28 @@ int err(ErrorCode code, const std::string &element) {
 					  << ORANGE << element << RESET << std::endl;
 			break;
 		case (E_CANT_OPEN):
-			std::cerr << YELLOW "Error: " RESET "unable to open file " 
+			std::cerr << YELLOW "Error: " RESET "unable to open file: " 
 					  << ORANGE << element << RESET << std::endl;
 			break;
-		case (E_BAD_FILE):
-			std::cerr << YELLOW "Error: " RESET "file " 
-					  << ORANGE << element << " is empty or is a directory.\n";
+		case (E_EMPTY):
+			std::cerr << YELLOW "Error: " RESET "this file is empty: " 
+					  << ORANGE << element << RESET << std::endl;
+			break;
+		case (E_ISPROG):
+			std::cerr << YELLOW "Error: " RESET "file: " 
+					  << ORANGE << element << " is not supported.\n";
+			break;
+		case (E_ISDIR):
+			std::cerr << YELLOW "Error: " RESET "this file: " 
+					  << ORANGE << element << " maybe a directory.\n";
+			break;
+		case (E_ISWEIRD):
+			std::cerr << YELLOW "Error: " RESET "can't get information about this file: " 
+					  << ORANGE << element << ".\n";
+			break;
+		case (E_ISLINK):
+			std::cerr << YELLOW "Error: " RESET "can't get information about this file: " 
+					  << ORANGE << element << ".\n";
 			break;
 		case (E_BAD_DATE):
 			std::cerr << YELLOW "Error: " RESET "invalid date => "
@@ -166,15 +186,38 @@ int main(int ac, char **av) {
 	int					exitCode;
 
 	filename = av[1];
-	
 	infile.open(filename.c_str());
 	if (!infile.is_open())
 		return err(E_CANT_OPEN, filename);
 	if (infile.peek() == std::ifstream::traits_type::eof())
-		return err(E_BAD_FILE, filename);
+		return err(E_EMPTY, filename);
+	if (filename.find("./") != std::string::npos)
+		return err(E_ISPROG, filename);
+	
+	// check if dir 
+	struct stat			myStat;
+	int					res;
+
+	res = stat(filename.c_str(), &myStat);
+	if (!res) {
+		if (S_ISDIR(myStat.st_mode))
+			return err(E_ISDIR, filename);
+	}
+	else
+		return err(E_ISWEIRD, filename);
+	
+	// check if symbolic link
+	res = lstat(filename.c_str(), &myStat);
+	if (!res) {
+		if (S_ISLNK(myStat.st_mode))
+			return err(E_ISLINK, filename);
+	}
+	else
+		return err(E_ISWEIRD, filename);
+
+	// LET'S GO
 	exitCode = launchXchange(infile);
 	infile.close();
-	
 	if (exitCode != EXIT_SUCCESS)
 		return exitCode;
 	return EXIT_SUCCESS;
